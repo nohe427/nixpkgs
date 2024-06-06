@@ -1,6 +1,11 @@
-{ stdenv, swift, fetchFromGitHub }:
+{ lib
+, stdenv
+, swift
+, swiftPackages
+, fetchFromGitHub
+}:
 
-stdenv.mkDerivation rec {
+swiftPackages.stdenv.mkDerivation rec {
   pname = "toolbox";
   version = "18.7.5";
 
@@ -10,4 +15,9 @@ stdenv.mkDerivation rec {
     rev = version;
     hash = "sha256-AyL+4khytxPh5JUHDmt7H8pGi+0Z9IvPehOX/99wHpo=";
   };
+
+  buildInputs = [
+    swift
+    swiftPackages.Foundation
+  ]
 }
